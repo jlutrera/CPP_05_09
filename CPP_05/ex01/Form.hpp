@@ -1,6 +1,9 @@
 #ifndef FORM_HPP
 # define FORM_HPP
 # include <iostream>
+# include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form
 {
@@ -20,13 +23,17 @@ public:
 	int			getGradeToSign() const;
 	int			getGradeToExec() const;
 	bool		getSigned() const;
-	//void		beSigned(const Bureaucrat &b);
+	void		beSigned(const Bureaucrat &b);
 
 	class GradeTooHighException : public std::exception
 	{
 		virtual const char *what() const throw();
 	};
 	class GradeTooLowException : public std::exception
+	{
+		virtual const char *what() const throw();
+	};
+	class FormAlreadySignedException : public std::exception
 	{
 		virtual const char *what() const throw();
 	};

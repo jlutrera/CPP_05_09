@@ -1,12 +1,12 @@
-NAME	= 	bureaucrat
+NAME	= 	forms
 #Flags
 CC		= 	c++
 CFLAGS	= 	-Wall -Wextra -Werror -Wshadow -Wpedantic -std=c++98 -fsanitize=address
 RM		= 	rm -rf
 
 #Files
-SRC		=	Bureaucrat.cpp main.cpp
-HEADER	=	Bureaucrat.hpp
+SRC		=	Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp Intern.cpp main.cpp
+HEADER	=	Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp Intern.hpp
 OBJ		= 	$(SRC:.cpp=.o)
 
 #Colors:
