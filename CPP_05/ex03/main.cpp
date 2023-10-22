@@ -5,9 +5,7 @@
 
 int main()
 {
-	try
-	{
-		Bureaucrat b("Bureaucrat", 140);
+	Bureaucrat b("Bureaucrat", 140);
 		Bureaucrat b2("Bureaucrat2", 64);
 		ShrubberyCreationForm s("Home");
 		RobotomyRequestForm r("Robot");
@@ -25,9 +23,4 @@ int main()
 		b2.signForm(p);
 		b.executeForm(p);
 		b2.executeForm(p);
-	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
 }

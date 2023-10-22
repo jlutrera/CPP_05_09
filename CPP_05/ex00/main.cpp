@@ -2,66 +2,35 @@
 
 int	main(void)
 {
-	Bureaucrat	pepe("Pepe", 150);
+	std::cout << "*****************************" << std::endl;
+	std::cout << "****** BUREAUCRAT TEST ******" << std::endl;
+	std::cout << "*****************************" << std::endl;
+
+	std::cout << "Creating bureaucrats:" << std::endl;
+	Bureaucrat	pepe("Pepe", 140);
 	Bureaucrat	jose("Jose", 5);
-
-	std::cout << "<pepe> named " << pepe << std::endl;
-	std::cout << "<jose> named " << jose << std::endl;
-
-	jose = pepe;
-
-	try
-	{
-		pepe.incrementGrade();
-	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-	std::cout << "<pepe> named " << pepe << std::endl;
-	std::cout << "<jose> named " << jose << std::endl;
-
-	try
-	{
-		pepe.decrementGrade();
-	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
 	std::cout << pepe << std::endl;
+	std::cout << jose << std::endl;
 
-	try
-	{
-		pepe.decrementGrade();
-	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-
+	std::cout << "Incrementing and decrementing bureaucrats:" << std::endl << std::endl;
+	jose = pepe;
+	pepe.incrementGrade();
+	std::cout << pepe << std::endl;
+	std::cout << jose << std::endl;
+	jose.decrementGrade();
+	std::cout << pepe << std::endl;
+	std::cout << jose << std::endl;
+	pepe.decrementGrade();
 	jose.incrementGrade();
+	std::cout << pepe << std::endl;
+	std::cout << jose << std::endl;
 
-	std::cout << "<Pepe> named " << pepe << std::endl;
-	std::cout << "<jose> named " << jose << std::endl;
-
-	try
-	{
-		Bureaucrat	carlos("Carlos", 0);
-	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-
-	try
-	{
-		Bureaucrat	carlos("Carlos", 151);
-	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
+	std::cout << "Trying to create bureaucrats with invalid grades:" << std::endl;
+	Bureaucrat	carlos("Carlos", 0);
+	Bureaucrat	carlos2("Carlos2", 151);
+	std::cout << carlos << std::endl;
+	std::cout << carlos2 << std::endl;
 	
+	std::cout << "Destroying bureaucrats:" << std::endl;
 	return (0);
 }

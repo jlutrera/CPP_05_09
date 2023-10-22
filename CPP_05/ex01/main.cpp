@@ -2,23 +2,29 @@
 
 int	main(void)
 {
-	int i = 4;
+	// create bureaucrats and forms
+	Bureaucrat jim("jim", 50);
+	Bureaucrat tom("tom", 100);
 
-	Form		f("Form", false, 1, 6);
-	Bureaucrat	b("Camile", 3);
-	while (i-- > -1)
-	{
-		std::cout << b << std::endl;
-		std::cout << f << std::endl;
-		b.signForm(f);
-		try
-		{
-			b.incrementGrade();
-		}
-		catch(const std::exception& e)
-		{
-			std::cerr << e.what() << '\n';
-		}
-	}
-	return (0);
+	Form badForm("bad", 50, 200);
+	Form goodForm("good", 80, 80);
+
+	std::cout << goodForm << std::endl;
+
+	// test beSigned() function
+	std::cout << "---" << std::endl;
+
+	goodForm.beSigned(tom); // can't sign
+	goodForm.beSigned(jim); // can sign
+
+	// test signForm() function
+	std::cout << "---" << std::endl;
+
+	tom.signForm(goodForm); // can't sign
+	jim.signForm(goodForm); // can sign
+
+	// all objects are automatically destructed
+	std::cout << "---" << std::endl;
+
+	return 0;
 }
