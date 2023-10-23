@@ -5,7 +5,7 @@
 # include "ShrubberyCreationForm.hpp"
 # include "PresidentialPardonForm.hpp"
 
-class Intern : public AForm
+class Intern
 {
 	public:
 		Intern();
@@ -13,11 +13,12 @@ class Intern : public AForm
 		~Intern();
 		Intern	&operator=(const Intern &copy);
 		AForm	*makeForm(std::string const &name, std::string const &target);
-		class FormNotFoundException : public std::exception
-		{
-			public:
-				virtual const char *what() const throw();
-		};
+	private:
+		AForm *RobotomyRequest(std::string target);
+
+
 };
+
+typedef void (Intern::*ptrf)();
 
 #endif
