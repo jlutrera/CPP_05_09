@@ -11,7 +11,7 @@ public:
 	ShrubberyCreationForm(std::string const &target);
 	ShrubberyCreationForm(const ShrubberyCreationForm &copy);
 	virtual ~ShrubberyCreationForm();
-	virtual ShrubberyCreationForm	&operator=(const ShrubberyCreationForm &copy);
+	ShrubberyCreationForm	&operator=(const ShrubberyCreationForm &copy);
 	virtual void	execute(Bureaucrat const &executor) const;
 	
 private:

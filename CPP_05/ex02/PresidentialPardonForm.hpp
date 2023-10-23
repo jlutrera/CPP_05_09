@@ -10,7 +10,7 @@ public:
 	PresidentialPardonForm(std::string const &target);
 	PresidentialPardonForm(const PresidentialPardonForm &copy);
 	virtual ~PresidentialPardonForm();
-	virtual PresidentialPardonForm	&operator=(const PresidentialPardonForm &copy);
+	PresidentialPardonForm	&operator=(const PresidentialPardonForm &copy);
 	virtual void	execute(Bureaucrat const &executor) const;
 private:
 	std::string	_target;

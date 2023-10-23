@@ -15,31 +15,36 @@ private:
 
 public:
 	AForm();
-	AForm(std::string name, bool sign, int gradeToSign, int gradeToExec);
+	AForm(std::string name, int gradeToSign, int gradeToExec);
 	AForm(const AForm &copy);
 	virtual ~AForm();
-	virtual AForm	&operator=(const AForm &copy);
+	AForm	&operator=(const AForm &copy);
 	std::string	getName() const;
-	virtual int			getGradeToSign() const;
-	virtual int			getGradeToExec() const;
-	virtual bool		getSigned() const;
-	virtual void		beSigned(const Bureaucrat &b);
+	int			getGradeToSign() const;
+	int			getGradeToExec() const;
+	bool		getSigned() const;
+	void		beSigned(const Bureaucrat &b);
 	virtual void 		execute(Bureaucrat const &executor) const = 0;
+
 	class GradeTooHighException : public std::exception
 	{
-		virtual const char *what() const throw();
+		public:
+			virtual const char *what() const throw();
 	};
 	class GradeTooLowException : public std::exception
 	{
-		virtual const char *what() const throw();
+		public:
+			virtual const char *what() const throw();
 	};
 	class FormAlreadySignedException : public std::exception
 	{
-		virtual const char *what() const throw();
+		public:
+			virtual const char *what() const throw();
 	};
 	class FormNotSignedException : public std::exception
 	{
-		virtual const char *what() const throw();
+		public:
+			virtual const char *what() const throw();
 	};
 };
 

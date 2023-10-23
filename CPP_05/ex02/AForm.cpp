@@ -4,24 +4,39 @@ AForm::AForm() : _name("default"), _signed(false), _gradeToSign(150), _gradeToEx
 {
 }
 
-AForm::AForm(std::string name, bool sign, int gradeToSign, int gradeToExec) : _name(name), _signed(sign), _gradeToSign(gradeToSign), _gradeToExec(gradeToExec) 
+AForm::AForm(std::string name, int gradeToSign, int gradeToExec) : _name(name), _signed(false), _gradeToSign(gradeToSign), _gradeToExec(gradeToExec)
 {
-	if (gradeToSign < 1 || gradeToExec < 1)
-		throw GradeTooHighException();
-	if (gradeToSign > 150 || gradeToExec > 150)
-		throw GradeTooLowException();
+	try
+	{
+		if (gradeToSign < 1 || gradeToExec < 1)
+			throw GradeTooHighException();
+		if (gradeToSign > 150 || gradeToExec > 150)
+			throw GradeTooLowException();
+	}
+	catch (const GradeTooHighException & e)
+	{
+		std::cerr << RED << e.what() << RESET << std::endl;
+	}
+	catch (const GradeTooLowException & e)
+	{
+		std::cerr << RED << e.what() << RESET << std::endl;
+	}
+	std::cout << GREEN << "* Form " << getName() << " is created with " << getGradeToSign() << " grade to sign and " << getGradeToExec() << " to execute. *" << RESET << std::endl;
 }
 
 AForm::AForm(const AForm &copy) : _name(copy._name), _signed(copy._signed), _gradeToSign(copy._gradeToSign), _gradeToExec(copy._gradeToExec)
 {
+	std::cout << YELLOW << "Form copy constructor is called." << RESET << std::endl;
 }
 
 AForm::~AForm()
 {
+	std::cout << MAGENTA << "* Form " << getName() << " is destroyed. *" << RESET << std::endl;
 }
 
 AForm	&AForm::operator=(const AForm &copy)
 {
+	std::cout << YELLOW << "Form assignation operator is called." << RESET << std::endl;
 	if (this != &copy)
 		_signed = copy._signed;
 	return (*this);
@@ -49,31 +64,51 @@ bool	AForm::getSigned() const
 
 void	AForm::beSigned(const Bureaucrat &b)
 {
-	if (_signed)
-		throw FormAlreadySignedException();
-	if (b.getGrade() > getGradeToSign())
-		throw GradeTooLowException();
- 	_signed = true;
+	try
+	{
+		if (b.getGrade() <= getGradeToSign())
+		{
+			if (_signed)
+				throw FormAlreadySignedException();
+			else
+			{
+ 				_signed = true;
+				std::cout << BLUE << b.getName() << " signs " << this->getName() << RESET << std::endl;
+			}
+		}
+		else
+ 				throw Bureaucrat::GradeTooLowException();
+	}
+	catch(AForm::FormAlreadySignedException& e)
+	{
+		std::cerr << getName() << " ";
+		std::cerr << e.what() << '\n';
+	}
+	catch(Bureaucrat::GradeTooLowException& e)
+	{
+		std::cerr << b.getName() << " ";
+		std::cerr << e.what() << '\n';
+	}
 }
 
 const char * AForm::FormAlreadySignedException::what() const throw()
 {
-	return ("form is already signed");
+	return ("Form is already signed");
 }
 
 const char * AForm::FormNotSignedException::what() const throw()
 {
-	return ("form is not signed");
+	return ("Form is not signed");
 }
 
 const char	*AForm::GradeTooHighException::what() const throw()
 {
-	return ("grade is too high");
+	return ("Form grade is too high");
 }
 
 const char	*AForm::GradeTooLowException::what() const throw()
 {
-	return ("grade is too low");
+	return ("Form grade is too low");
 }
 
 std::ostream	&operator<<(std::ostream &out, const AForm &form)
