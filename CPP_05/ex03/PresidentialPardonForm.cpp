@@ -25,6 +25,11 @@ PresidentialPardonForm	&PresidentialPardonForm::operator=(const PresidentialPard
 	return (*this);
 }
 
+std::string PresidentialPardonForm::getTarget() const
+{
+	return (_target);
+}
+
 void	PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
 	try

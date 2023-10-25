@@ -24,6 +24,11 @@ RobotomyRequestForm	&RobotomyRequestForm::operator=(const RobotomyRequestForm &c
 	return (*this);
 }
 
+std::string RobotomyRequestForm::getTarget() const
+{
+	return (_target);
+}
+
 void	RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
 	try

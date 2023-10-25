@@ -1,89 +1,56 @@
-#include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "PresidentialPardonForm.hpp"
-#include "Bureaucrat.hpp"
+#include "Intern.hpp"
 
 int main()
 {
-	std::cout << std::endl << "--ShrubberyCreationForm--" << std::endl;
+	Intern randomIntern;
+	std::string target[4] = {"dog", "cat", "fish", "no"};
 
-	{
-		Bureaucrat highGrade("highGrade", 1);
-		Bureaucrat lowGrade("lowGrade", 150);
-		ShrubberyCreationForm shrubbery("Rabbit");
-		std::cout << shrubbery << std::endl;
+	std::cout << "---------------------------------------------------------------" << std::endl;
+	std::cout << "                     Intern creates forms                      " << std::endl;
+	std::cout << "---------------------------------------------------------------" << std::endl;
+	AForm* form1 = randomIntern.makeForm("presidential pardon", target[0]);
+	AForm* form2 = randomIntern.makeForm("robotomy request", target[1]);
+	AForm* form3 = randomIntern.makeForm("shrubbery creation", target[2]);
+	AForm* form4 = randomIntern.makeForm("shrubbery", target[3]);
 
-		// form cannot be executed because its not signed
-		std::cout << "----" << std::endl;
-		shrubbery.execute(highGrade);
-		highGrade.executeForm(shrubbery);
-		lowGrade.executeForm(shrubbery);
+	std::cout << "\n---------------------------------------------------------------" << std::endl;
+	std::cout << "                     Intern target forms                       " << std::endl;
+	std::cout << "---------------------------------------------------------------" << std::endl;
+	
+	std::cout << YELLOW  << form1->getName() << RESET;
+	std::cout << " is created to target ";
+	std::cout << YELLOW << form1->getTarget() << RESET << std::endl;
+	std::cout << YELLOW << form2->getName() << RESET;
+	std::cout << " is created to target ";
+	std::cout << YELLOW << form2->getTarget() << RESET << std::endl;
+	std::cout << YELLOW << form3->getName() << RESET;
+	std::cout << " is created to target ";
+	std::cout << YELLOW << form3->getTarget() << RESET << std::endl;
 
-		// sign the form
-		std::cout << "----" << std::endl;
-		highGrade.signForm(shrubbery);
+	std::cout << "\n---------------------- Destroying Intern forms ------------------" << std::endl;
+	delete form1;
+	delete form2;
+	delete form3;
+	delete form4;
 
-		// execute form
-		std::cout << "----" << std::endl;
-		shrubbery.execute(lowGrade);
-		shrubbery.execute(highGrade);
-		highGrade.executeForm(shrubbery);
+	std::cout << "\n-------------------- TESTING Bureaucrat and Forms ----------------" << std::endl;
 
-		std::cout << "----" << std::endl;
-	}
+	Bureaucrat bureaucrat("ash", 82);
+    ShrubberyCreationForm form5("Shrubbery");
+    RobotomyRequestForm form6("Robotomy");
+    PresidentialPardonForm form7("President");
 
-	std::cout << std::endl << "--RobotomyRequestForm--" << std::endl;
-	{
-		Bureaucrat highGrade("highGrade", 1);
-		Bureaucrat lowGrade("lowGrade", 150);
-		RobotomyRequestForm robotomy("Rabbit");
-		std::cout << robotomy << std::endl;
+	std::cout << "\n------------------------ Form 5 ( Shrubbery ) --------------------" << std::endl;
+    bureaucrat.signForm(form5);
+    bureaucrat.executeForm(form5);
 
-		// form cannot be executed because its not signed
-		std::cout << "----" << std::endl;
-		robotomy.execute(highGrade);
-		highGrade.executeForm(robotomy);
-		lowGrade.executeForm(robotomy);
-
-		// sign the form
-		std::cout << "----" << std::endl;
-		highGrade.signForm(robotomy);
-
-		// execute form
-		std::cout << "----" << std::endl;
-		robotomy.execute(lowGrade);
-		robotomy.execute(highGrade);
-		highGrade.executeForm(robotomy);
-
-		std::cout << "----" << std::endl;
-	}
-
-	std::cout << std::endl << "--PresidentialPardonForm--" << std::endl;
-
-	{
-		Bureaucrat highGrade("highGrade", 1);
-		Bureaucrat lowGrade("lowGrade", 150);
-		PresidentialPardonForm presidential("Rabbit");
-		std::cout << presidential << std::endl;
-
-		// form cannot be executed because its not signed
-		std::cout << "----" << std::endl;
-		presidential.execute(highGrade);
-		highGrade.executeForm(presidential);
-		lowGrade.executeForm(presidential);
-
-		// sign the form
-		std::cout << "----" << std::endl;
-		highGrade.signForm(presidential);
-
-		// execute form
-		std::cout << "----" << std::endl;
-		presidential.execute(lowGrade);
-		presidential.execute(highGrade);
-		highGrade.executeForm(presidential);
-
-		std::cout << "----" << std::endl;
-	}
-
-	return 0;
+    std::cout << "\n------------------------ Form 6 ( Robotomy ) ---------------------" << std::endl;
+    bureaucrat.signForm(form6);
+    bureaucrat.executeForm(form6);
+	bureaucrat.executeForm(form6);
+    bureaucrat.executeForm(form6);
+    bureaucrat.executeForm(form6);
+    std::cout << "\n------------------------ Form 7 ( President ) --------------------" << std::endl;
+    bureaucrat.signForm(form7);
+    bureaucrat.executeForm(form7);
 }

@@ -77,7 +77,7 @@ void	AForm::beSigned(const Bureaucrat &b)
 			}
 		}
 		else
- 				throw Bureaucrat::GradeTooLowException();
+ 			throw Bureaucrat::GradeTooLowException();
 	}
 	catch(AForm::FormAlreadySignedException& e)
 	{

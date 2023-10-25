@@ -24,6 +24,11 @@ ShrubberyCreationForm	&ShrubberyCreationForm::operator=(const ShrubberyCreationF
 	return (*this);
 }
 
+std::string ShrubberyCreationForm::getTarget() const
+{
+	return (_target);
+}
+
 void	ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
 	try

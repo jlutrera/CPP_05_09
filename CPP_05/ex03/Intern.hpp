@@ -12,13 +12,11 @@ class Intern
 		Intern(const Intern &copy);
 		~Intern();
 		Intern	&operator=(const Intern &copy);
-		AForm	*makeForm(std::string const &name, std::string const &target);
+		virtual AForm	*makeForm(std::string const &name, std::string const &target);
 	private:
-		AForm *RobotomyRequest(std::string target);
-
-
+		AForm	*_RobotomyRequest(std::string targetz);
+		AForm	*_ShrubberyCreation(std::string target);
+		AForm	*_PresidentialPardon(std::string target);
 };
-
-typedef void (Intern::*ptrf)();
 
 #endif

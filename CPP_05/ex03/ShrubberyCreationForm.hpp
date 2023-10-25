@@ -10,10 +10,10 @@ public:
 	ShrubberyCreationForm();
 	ShrubberyCreationForm(std::string const &target);
 	ShrubberyCreationForm(const ShrubberyCreationForm &copy);
-	virtual ~ShrubberyCreationForm();
+	~ShrubberyCreationForm();
+	std::string getTarget() const;
 	ShrubberyCreationForm	&operator=(const ShrubberyCreationForm &copy);
-	virtual void	execute(Bureaucrat const &executor) const;
-	
+	void	execute(Bureaucrat const &executor) const;
 private:
 	std::string	_target;
 };
