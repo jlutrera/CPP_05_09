@@ -12,6 +12,7 @@ public:
 	ShrubberyCreationForm(const ShrubberyCreationForm &copy);
 	virtual ~ShrubberyCreationForm();
 	ShrubberyCreationForm	&operator=(const ShrubberyCreationForm &copy);
+	virtual std::string	getTarget() const;
 	virtual void	execute(Bureaucrat const &executor) const;
 	
 private:
