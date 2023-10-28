@@ -5,7 +5,7 @@ CFLAGS	= 	-Wall -Wextra -Werror -Wpedantic -std=c++98 -fsanitize=address
 RM		= 	rm -rf
 
 #Files
-SRC		=	serial.cpp main.cpp
+SRC		=	main.cpp serial.cpp
 HEADER	=	serial.hpp
 OBJ		= 	$(SRC:.cpp=.o)
 
@@ -23,7 +23,7 @@ all		: 	$(NAME)
 			printf "$(CURSIVE)$(GRAY) 	- Compiling $@... $(RESET)\n"
 			$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME)	: 	$(OBJ)
+$(NAME)	: 	$(OBJ) $(HEADER)
 			printf "$(CURSIVE)$(GRAY) 	- Linking $(NAME)... $(RESET)\n"
 			$(CC) $(CFLAGS) $^ -o $(NAME)
 			printf "$(GREEN)    - Executable ready.\n$(RESET)"

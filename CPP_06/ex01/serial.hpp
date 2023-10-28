@@ -2,28 +2,15 @@
 # define SERIAL_HPP
 
 # include <iostream>
-
-typedef unsigned int uintptr_t;
+# include <stdint.h>
 
 struct Data
 {
-	uintptr_t raw;
+	std::string name;
+	int age;
 };
 
-class Serial
-{
-	private:
-		uintptr_t _serial;
-	public:
-		Serial(void);
-		Serial(const Serial &copy);
-		~Serial(void);
-		Serial &operator=(const Serial &copy);
-		uintptr_t getSerial(void) const;
-
-		uintptr_t serialize(Data *ptr);
-		Data *deserialize(uintptr_t raw);
-};
-
+uintptr_t serialize(Data *data);
+Data *deserialize(uintptr_t ptr);
 
 #endif

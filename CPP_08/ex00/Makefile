@@ -1,12 +1,12 @@
-NAME	= 	identify
+NAME	= 	easyfind
 #Flags
 CC		= 	c++
 CFLAGS	= 	-Wall -Wextra -Werror -Wpedantic -std=c++98 -fsanitize=address
 RM		= 	rm -rf
 
 #Files
-SRC		=	Base.cpp A.cpp B.cpp C.cpp identify.cpp main.cpp 
-HEADER	=	Base.hpp A.hpp B.hpp C.hpp identify.hpp colors.hpp
+SRC		=	main.cpp 
+HEADER	=	easyfind.hpp
 OBJ		= 	$(SRC:.cpp=.o)
 
 #Colors:

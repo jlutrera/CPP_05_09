@@ -6,5 +6,5 @@ C::~C()
 
 C::C()
 {
-	std::cout << "C constructor called" << std::endl;
+	std::cout << ">> C constructor called <<" << std::endl;
 }

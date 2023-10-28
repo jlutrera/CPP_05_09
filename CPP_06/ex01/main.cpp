@@ -1,20 +1,22 @@
-#include "serial.hpp"
-
+# include "serial.hpp"
 int main()
 {
-	Serial serial;
-	Data *data;
+	Data *data = new Data;
+	uintptr_t serial;
 	Data *data2;
 
-	data = new Data;
-	data->raw = 42;
-	std::cout << "data->raw = " << data->raw << std::endl;
-	serial.serialize(data);
-	std::cout << "serial.getSerial() = " << serial.getSerial() << std::endl;
-	data2 = serial.deserialize(serial.getSerial());
-	std::cout << "data2->raw = " << data2->raw << std::endl;
-	delete data;
-	delete data2;
+	data->name = "John Doe";
+	data->age = 42;
+	std::cout << "data->name = " << data->name << std::endl;
+	std::cout << "data->age = " << data->age << std::endl;
+	serial = serialize(data);
 
+	std::cout << "serial = 0x";
+	std::cout << std::hex << serial << std::dec << std::endl;
+	data2 = deserialize(serial);
+	std::cout << "data2->name = " << data2->name << std::endl;
+	std::cout << "data2->age = " << data2->age << std::endl;
+
+	delete data;
 	return (0);
 }

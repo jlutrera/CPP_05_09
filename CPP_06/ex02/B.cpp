@@ -6,5 +6,5 @@ B::~B()
 
 B::B()
 {
-	std::cout << "B constructor called" << std::endl;
+	std::cout << ">> B constructor called <<" << std::endl;
 }

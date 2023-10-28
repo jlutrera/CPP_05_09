@@ -6,5 +6,5 @@ A::~A()
 
 A::A()
 {
-	std::cout << "A constructor called" << std::endl;
+	std::cout << ">> A constructor called <<" << std::endl;
 }
