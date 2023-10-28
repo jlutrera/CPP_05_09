@@ -1,9 +1,10 @@
 #ifndef WHATEVER_HPP
 # define WHATEVER_HPP
 
+# define RESET			"\033[0m"
+# define CYAN			"\033[36m"
 
 template <typename T>
-
 void swap(T &a, T &b)
 {
 	T tmp = a;

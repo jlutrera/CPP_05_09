@@ -8,11 +8,24 @@ template <typename T>
 class Array
 {
 	public:
-		Array(void) : _array(NULL), _size(0) {}
-		Array(unsigned int n) : _array(new T[n]), _size(n) {}
-		Array(Array const &src) : _array(NULL), _size(0) { *this = src; }
-		~Array(void) { delete [] _array; }
-
+		Array(void) : _array(NULL), _size(0)
+		{
+			std::cout << "An empty array has been created" << std::endl;
+		}
+		Array(unsigned int n) : _array(new T[n]), _size(n)
+		{
+			std::cout << "An array of size " << n << " has been created" << std::endl;
+		}
+		Array(Array const &src) : _array(NULL), _size(0)
+		{
+			std::cout << "An array has been created by copy" << std::endl;
+			*this = src;
+		}
+		~Array(void)
+		{
+			std::cout << "An array has been destroyed" << std::endl;
+			delete [] _array;
+		}
 		Array &operator=(Array const &rhs)
 		{
 			if (this != &rhs)
@@ -25,15 +38,16 @@ class Array
 			}
 			return (*this);
 		}
-
 		T &operator[](unsigned int i)
 		{
 			if (i >= _size)
 				throw std::exception();
 			return (_array[i]);
 		}
-
-		unsigned int size(void) const { return (_size); }
+		unsigned int size(void) const
+		{
+			return (_size);
+		}
 
 	private:
 		T *_array;
