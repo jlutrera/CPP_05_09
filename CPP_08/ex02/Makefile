@@ -1,4 +1,4 @@
-NAME	= 	mutanstack
+NAME	= 	mutantstack
 #Flags
 CC		= 	c++
 CFLAGS	= 	-Wall -Wextra -Werror -Wpedantic -std=c++98 -fsanitize=address
