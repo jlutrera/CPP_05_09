@@ -3,18 +3,21 @@
 
 # include <iostream>
 # include <fstream>
-# include <string>
-# include <vector>
 # include <map>
-# include <algorithm>
-# include <iterator>
-# include <iomanip>
-# include <sstream>
-# include <fstream>
-# include <exception>
 # include <ctime>
+# include <stdexcept>
+# include <string>
 # include <cstdlib>
-# include <cmath>
+# include <sstream>
+# include <iomanip>
+
+# define FLT_MAX 3.40282e+38
+
+# define RESET			"\033[0m"
+# define RED			"\033[31m"
+# define GREEN			"\033[32m"
+# define YELLOW			"\033[33m"
+# define CYAN			"\033[36m"
 
 class BitcoinExchange
 {
@@ -24,34 +27,17 @@ class BitcoinExchange
 		~BitcoinExchange();
 		BitcoinExchange &operator=(const BitcoinExchange &copy);
 
-		void		setData(std::string data);
-		void		setData(std::string data, std::string date);
-		void		setData(std::string data, std::string date, std::string time);
-		void		setData(std::string data, std::string date, std::string time, std::string price);
-		void		setData(std::string data, std::string date, std::string time, std::string price, std::string volume);
-		void		setData(std::string data, std::string date, std::string time, std::string price, std::string volume, std::string marketcap);
-		void		setData(std::string data, std::string date, std::string time, std::string price, std::string volume, std::string marketcap, std::string coin);
-
-		std::string	getData() const;
-		std::string	getDate() const;
-		std::string	getTime() const;
-		std::string	getPrice() const;
-		std::string	getVolume() const;
-		std::string	getMarketcap() const;
-		std::string	getCoin() const;
-
-		void		printData() const;
-		void		printData(std::string coin) const;
-		void		run(std::string line) const;
-
+		void	calculate(void);
+		void	loadData(std::string &line, const char &c);
+		void 	CheckFile(std::ifstream &fd, const char *name);
+		void 	ReadFile(std::ifstream &fd, BitcoinExchange &exchange, const char &c);
 	private:
-		std::string	_data;
-		std::string	_date;
-		std::string	_time;
-		std::string	_price;
-		std::string	_volume;
-		std::string	_marketcap;
-		std::string	_coin;
+		std::map<std::string, float> _exchange;
+		std::string 			_date;
+		float 					_value;
+		time_t 					_t;
+		time_t 	_loadDate(std::string &line);
+		float 	_loadValue(std::string &line, const float &limit);
 };
 
 #endif

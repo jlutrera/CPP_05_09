@@ -1,12 +1,12 @@
-NAME	= 	identify
+NAME	= 	RPN
 #Flags
 CC		= 	c++
 CFLAGS	= 	-Wall -Wextra -Werror -Wpedantic -std=c++98 -fsanitize=address
 RM		= 	rm -rf
 
 #Files
-SRC		=	Base.cpp A.cpp B.cpp C.cpp identify.cpp main.cpp 
-HEADER	=	Base.hpp A.hpp B.hpp C.hpp identify.hpp colors.hpp
+SRC		=	RPN.cpp main.cpp 
+HEADER	=	RPN.hpp
 OBJ		= 	$(SRC:.cpp=.o)
 
 #Colors:

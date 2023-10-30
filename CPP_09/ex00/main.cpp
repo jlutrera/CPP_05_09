@@ -2,25 +2,41 @@
 
 int main(int argc, char **argv)
 {
+	std::ifstream 	fd_data;
+	std::ifstream 	fd_input;
+	BitcoinExchange	exchange;
+
+	// Check number of arguments
 	if (argc != 2)
 	{
-		std::cout << "Usage: btc <filename>" << std::endl;
-		exit(1);
-	}
-	std::ifstream fd;
-	fd.open(argv[1]);
-
-	if (!fd.is_open())
-	{
-		std::cout << "Error opening file!" << std::endl;
+		std::cerr << RED << " Error : Usage ./btc <filename>" << RESET << std::endl;
 		exit(1);
 	}
 
-	BitcoinExchange exchange;
-	std::string line;
-	while (getline(fd, line))
-	{
-		exchange.run(line);
-	}
-	fd.close();
+	// Check if file "data.csv" exists and can be opened
+	exchange.CheckFile(fd_data, "data.csv");
+
+	// Check if file, which name is in argv[1], exists and can be opened
+	exchange.CheckFile(fd_input, argv[1]);
+
+	// Read data from file "data.csv" and store it in "_exchange"
+	// Values in file "data.csv" are separated by commas and can be any positive float number
+	exchange.ReadFile(fd_data, exchange, ',');
+	
+	// Read data from file, which name is in argv[1], and
+	// calculate the value of the bitcoin at the date specified in the file
+	// Values in file, which name is in argv[1], are separated by pipes and
+	// can be any positive float number less than 1000
+	
+	std::cout << "\n>>>>>>>>>>>>>>>>>>>> BITCOIN  EXCHANGE <<<<<<<<<<<<<<<<<<<<<<" << std::endl;
+	std::cout << YELLOW << " Date given "  << RESET << " => ";
+	std::cout << CYAN   << "  Value"   << RESET << " * ";
+	std::cout << CYAN   << "Change"  << RESET << " = ";
+	std::cout << GREEN  << "Result"  << RESET;
+	std::cout << "       [Date found]" << std::endl;
+	std::cout << ">>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n" << std::endl;
+
+	exchange.ReadFile(fd_input, exchange, '|');
+	
+	return (0);
 }
