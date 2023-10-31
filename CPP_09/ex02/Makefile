@@ -5,8 +5,8 @@ CFLAGS	= 	-Wall -Wextra -Werror -Wpedantic -std=c++98 -fsanitize=address
 RM		= 	rm -rf
 
 #Files
-SRC		=	PmergeMe.cpp main.cpp 
-HEADER	=	PmergeMe.hpp
+SRC		=	main2.cpp 
+
 OBJ		= 	$(SRC:.cpp=.o)
 
 #Colors:
@@ -19,7 +19,7 @@ CURSIVE	=	\e[33;3m
 #Rules
 all		: 	$(NAME)
 
-%.o		:	%.cpp $(HEADER)
+%.o		:	%.cpp
 			printf "$(CURSIVE)$(GRAY) 	- Compiling $@... $(RESET)\n"
 			$(CC) $(CFLAGS) -c $< -o $@
 
