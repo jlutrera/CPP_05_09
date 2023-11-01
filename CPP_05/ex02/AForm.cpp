@@ -73,7 +73,7 @@ void	AForm::beSigned(const Bureaucrat &b)
 			else
 			{
  				_signed = true;
-				std::cout << BLUE << b.getName() << " signs " << this->getName() << RESET << std::endl;
+				std::cout << CYAN << b.getName() << " signs " << this->getName() << RESET << std::endl;
 			}
 		}
 		else

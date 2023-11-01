@@ -74,7 +74,7 @@ void	Form::beSigned(const Bureaucrat &b)
 			else
 			{
  				_signed = true;
-				std::cout << BLUE << b.getName() << " signs " << this->getName() << RESET << std::endl;
+				std::cout << CYAN << b.getName() << " signs " << this->getName() << RESET << std::endl;
 			}
 		}
 		else
@@ -114,7 +114,7 @@ std::ostream	&operator<<(std::ostream &out, const Form &form)
 		word = "YES";
 	else
 		word = "NOT";
-	out << BLUE; 
+	out << CYAN; 
 	out << "Form Name          : " << form.getName() << std::endl;
 	out << "   Signed State    : " << word << std::endl;
 	out << "   Grade to sign   : " << form.getGradeToSign()	<< std::endl;
