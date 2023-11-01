@@ -5,7 +5,7 @@ CFLAGS	= 	-Wall -Wextra -Werror -Wpedantic -std=c++98 -fsanitize=address
 RM		= 	rm -rf
 
 #Files
-SRC		=	main2.cpp 
+SRC		=	main.cpp 
 
 OBJ		= 	$(SRC:.cpp=.o)
 
