@@ -1,4 +1,4 @@
-#include "convert.hpp"
+#include "Convert.hpp"
 
 int main(int argc, char **argv)
 {
@@ -7,9 +7,8 @@ int main(int argc, char **argv)
 		std::cout << "Wrong number of arguments" << std::endl;
 		return (1);
 	}
+
 	Convert conv(argv[1]);
-	conv.DetectLiteral(argv[1]);
-	conv.display(argv[1]);
-	
+	conv.display();
 	return (0);
 }

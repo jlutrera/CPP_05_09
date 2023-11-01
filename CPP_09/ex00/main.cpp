@@ -14,14 +14,14 @@ int main(int argc, char **argv)
 	}
 
 	// Check if file "data.csv" exists and can be opened
-	exchange.CheckFile(fd_data, "data.csv");
+	exchange.checkFile(fd_data, "data.csv");
 
 	// Check if file, which name is in argv[1], exists and can be opened
-	exchange.CheckFile(fd_input, argv[1]);
+	exchange.checkFile(fd_input, argv[1]);
 
 	// Read data from file "data.csv" and store it in "_exchange"
 	// Values in file "data.csv" are separated by commas and can be any positive float number
-	exchange.ReadFile(fd_data, exchange, ',');
+	exchange.readFile(fd_data, exchange, ',');
 	
 	// Read data from file, which name is in argv[1], and
 	// calculate the value of the bitcoin at the date specified in the file
@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 	std::cout << "       [Date found]" << std::endl;
 	std::cout << ">>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n" << std::endl;
 
-	exchange.ReadFile(fd_input, exchange, '|');
+	exchange.readFile(fd_input, exchange, '|');
 	
 	return (0);
 }

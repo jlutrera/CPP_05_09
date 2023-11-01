@@ -5,8 +5,8 @@ CFLAGS	= 	-Wall -Wextra -Werror -Wpedantic -std=c++98 -fsanitize=address
 RM		= 	rm -rf
 
 #Files
-SRC		=	main.cpp convert.cpp
-HEADER	=	convert.hpp 
+SRC		=	main.cpp Convert.cpp
+HEADER	=	Convert.hpp 
 OBJ		= 	$(SRC:.cpp=.o)
 
 #Colors:

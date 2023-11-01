@@ -1,72 +1,66 @@
 #include "identify.hpp"
 
+Base::~Base(void) {}
+
 Base *generate(void)
 {
-	int i = rand() % 4;
-	switch (i)
+	int random = rand() % 4;
+	Base *base;
+
+	std::cout << "Created  : ";
+	switch (random)
 	{
-		case 0:
-			return (new A());
-		case 1:
-			return (new B());
-		case 2:
-			return (new C());
-		default:
-		{
-			std::cout << ">> None  class  called  <<" << std::endl;
-			return (NULL);
-		}
+		case 0:	std::cout << "A" << std::endl;
+				base = new A;
+				break;
+		case 1:	std::cout << "B" << std::endl;
+				base = new B;
+				break;
+		case 2:	std::cout << "C" << std::endl;
+				base = new C;
+				break;
+		default:std::cout << "NULL" << std::endl;
+				base = NULL;
+				break;
 	}
+	return (base);
 }
 
 void identify(Base *p)
 {
-	std::cout << YELLOW << "Pointer   : " << RESET;
+	std::cout << "Pointer  : ";
 	if (dynamic_cast<A *>(p))
-		std::cout << CYAN << "A" << RESET << std::endl;
+		std::cout << "A" << std::endl;
 	else if (dynamic_cast<B *>(p))
-		std::cout << CYAN << "B" << RESET << std::endl;
+		std::cout << "B" << std::endl;
 	else if (dynamic_cast<C *>(p))
-		std::cout << CYAN << "C" << RESET << std::endl;
+		std::cout << "C" << std::endl;
 	else
-		std::cout << RED << "Unknown" << RESET << std::endl;
+		std::cout << "NULL" << std::endl;
 }
 
 void identify(Base &p)
 {
+	std::cout << "Reference: ";
 	try
 	{
 		A &a = dynamic_cast<A &>(p);
-		std::cout << YELLOW << "Reference : " << CYAN << "A" << RESET << std::endl;
+		std::cout << "A" << std::endl;
 		(void)a;
-		return ;
 	}
-	catch (std::exception &e)
-	{
-		std::cout << RED << "            dynamic_cast<A &> failed" << RESET << std::endl;
-	}
-
+	catch (std::exception &e){}
 	try
 	{
 		B &b = dynamic_cast<B &>(p);
-		std::cout << YELLOW << "Reference : " << CYAN << "B" << RESET << std::endl;
+		std::cout << "B" << std::endl;
 		(void)b;
-		return ;
 	}
-	catch (std::exception &e)
-	{
-		std::cout << RED << "            dynamic_cast<B &> failed !" << RESET << std::endl;
-	}
-	
+	catch (std::exception &e){}
 	try
 	{
 		C &c = dynamic_cast<C &>(p);
-		std::cout << YELLOW << "Reference : " << CYAN << "C" << RESET << std::endl;
+		std::cout << "C" << std::endl;
 		(void)c;
-		return ;
 	}
-	catch (std::exception &e)
-	{
-		std::cout << RED << "             dynamic_cast<C &> failed" << RESET << std::endl;
-	}
+	catch (std::exception &e){}
 }

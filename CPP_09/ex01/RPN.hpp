@@ -23,8 +23,8 @@ class RPN
 		int 		getSize() const;
 		int 		getSize2() const;
 		void 		operation(char op);
-
-		
+		void 		process(char c1, char c2);
+		void 		print(int pren);
 };
 
 #endif

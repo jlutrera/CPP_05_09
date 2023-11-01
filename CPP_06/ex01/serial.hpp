@@ -7,10 +7,10 @@
 struct Data
 {
 	std::string name;
-	int age;
+	int 		age;
 };
 
-uintptr_t serialize(Data *data);
-Data *deserialize(uintptr_t ptr);
+uintptr_t	serialize(Data *data);
+Data 		*deserialize(uintptr_t ptr);
 
 #endif

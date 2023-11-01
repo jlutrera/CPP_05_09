@@ -1,12 +1,10 @@
-#ifndef IDENTIFY_HPP
-# define IDENTIFY_HPP
+#ifndef IDENTIFY_HPP_
+# define IDENTIFY_HPP_
 
-#include "A.hpp"
-#include "B.hpp"
-#include "C.hpp"
+# include "Classes.hpp"
 #include <ctime>
 #include <cstdlib>
-#include "colors.hpp"
+#include <iostream>
 
 Base *generate(void);
 void identify(Base *p);

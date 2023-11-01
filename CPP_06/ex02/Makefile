@@ -5,8 +5,8 @@ CFLAGS	= 	-Wall -Wextra -Werror -Wpedantic -std=c++98 -fsanitize=address
 RM		= 	rm -rf
 
 #Files
-SRC		=	Base.cpp A.cpp B.cpp C.cpp identify.cpp main.cpp 
-HEADER	=	Base.hpp A.hpp B.hpp C.hpp identify.hpp colors.hpp
+SRC		=	main.cpp identify.cpp
+HEADER	=	identify.hpp
 OBJ		= 	$(SRC:.cpp=.o)
 
 #Colors:
@@ -23,7 +23,7 @@ all		: 	$(NAME)
 			printf "$(CURSIVE)$(GRAY) 	- Compiling $@... $(RESET)\n"
 			$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME)	: 	$(OBJ)
+$(NAME)	: 	$(OBJ) $(HEADER)
 			printf "$(CURSIVE)$(GRAY) 	- Linking $(NAME)... $(RESET)\n"
 			$(CC) $(CFLAGS) $^ -o $(NAME)
 			printf "$(GREEN)    - Executable ready.\n$(RESET)"

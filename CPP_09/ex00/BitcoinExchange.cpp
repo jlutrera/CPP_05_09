@@ -24,7 +24,7 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &copy)
 	return (*this);
 }
 
-void BitcoinExchange::CheckFile(std::ifstream &fd, const char *name)
+void BitcoinExchange::checkFile(std::ifstream &fd, const char *name)
 {
 	fd.open(name);
 	if (!fd.is_open())
@@ -35,7 +35,7 @@ void BitcoinExchange::CheckFile(std::ifstream &fd, const char *name)
 	}
 }
 
-void BitcoinExchange::ReadFile(std::ifstream &fd, BitcoinExchange &exchange, const char &c)
+void BitcoinExchange::readFile(std::ifstream &fd, BitcoinExchange &exchange, const char &c)
 {
 	std::string line;
 	getline(fd, line);

@@ -29,8 +29,8 @@ class BitcoinExchange
 
 		void	calculate(void);
 		void	loadData(std::string &line, const char &c);
-		void 	CheckFile(std::ifstream &fd, const char *name);
-		void 	ReadFile(std::ifstream &fd, BitcoinExchange &exchange, const char &c);
+		void 	checkFile(std::ifstream &fd, const char *name);
+		void 	readFile(std::ifstream &fd, BitcoinExchange &exchange, const char &c);
 	private:
 		std::map<std::string, float> _exchange;
 		std::string 			_date;

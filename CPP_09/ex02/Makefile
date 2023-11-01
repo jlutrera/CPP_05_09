@@ -5,8 +5,8 @@ CFLAGS	= 	-Wall -Wextra -Werror -Wpedantic -std=c++98 -fsanitize=address
 RM		= 	rm -rf
 
 #Files
-SRC		=	main.cpp 
-
+SRC		=	main.cpp PmergeMe.cpp
+HEADER	=	PmergeMe.hpp
 OBJ		= 	$(SRC:.cpp=.o)
 
 #Colors:

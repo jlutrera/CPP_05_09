@@ -1,5 +1,4 @@
-#include "convert.hpp"
-#include "colors.hpp"
+#include "Convert.hpp"
 
 Convert::Convert()
 {
@@ -45,39 +44,53 @@ long double Convert::getNumber() const
 	return (_ld);
 }
 
-void Convert::DetectLiteral(std::string str)
+std::string Convert::getStr() const
 {
+	return (_str);
+}
+
+void Convert::detectLiteral( void )
+{
+	std::string str = _str;
+	std::istringstream(str) >> _ld;
+	_c = str[0];
+
 	if ( !str.compare("nan")  || !str.compare("nanf")  ||
 		 !str.compare("inf")  || !str.compare("inff")  ||
 		 !str.compare("+inf") || !str.compare("+inff") ||
 	  	 !str.compare("-inf") || !str.compare("-inff") )
 		_type = "special";
-	else if (!isdigit(str[0])  && str[0] != '+' && str[0] != '-')
-	{
+
+	else if ( !isdigit(str[0])  && str[0] != '+' && str[0] != '-' )
 		_type = "char";
-		_c = str[0];
-	}
-	else if (str.find('.') != std::string::npos && str.find('f') != std::string::npos)
-	{
+
+	else if ((isdigit(str[0]) || str[0] == '-' || str[0] == '+' ) &&
+			  str.find('f') == std::string::npos &&
+			  str.find('.') == std::string::npos &&
+			  _ld <= static_cast<long double>(INT_MAX) &&
+			  _ld >= static_cast<long double>(INT_MIN) &&
+			  _ld == static_cast<int>(_ld) )
+		_type = "int";
+
+	else if ( str.find('f') != std::string::npos &&
+			  _ld <= static_cast<long double>(FLT_MAX) &&
+			  _ld >= static_cast<long double>(FLT_MIN) )
 		_type = "float";
-		std::istringstream(str) >> _ld;
-	} 
-	else if ((str.find('.') != std::string::npos &&
-			  str.find('f') == std::string::npos) ||
-			( isdigit(str[0]) || str[0] == '-' || str[0] == '+'))
-	{
+
+	else if ( _ld <= static_cast<long double>(DBL_MAX) &&
+			  _ld >= static_cast<long double>(DBL_MIN) )
 		_type = "double";
-		std::istringstream(str) >> _ld;
-		if (_ld <= static_cast<long double>(INT_MAX) && _ld >= static_cast<long double>(INT_MIN) && _ld == static_cast<int>(_ld))
-			_type = "int";
-	}
+
 	else
 		_type = "impossible";
-	std::cout << YELLOW << ">>---- Detected a " << GREEN << _type;
-	std::cout << YELLOW <<" literal ----<<" << RESET << std::endl;}
 
-void Convert::IsChar(char c)
+	std::cout << ">>---- Detected a " << GREEN << _type << RESET;
+	std::cout << " literal ----<<" << std::endl;}
+
+void Convert::isChar( void )
 {
+	char c = _c;
+
 	//printing char literal
 	std::cout << "  char   : ";
 	if (c < 32 || c > 126)
@@ -101,49 +114,44 @@ void Convert::IsChar(char c)
 	std::cout << RESET << std::endl;
 }
 
-void Convert::IsNumber(long double d)
+void Convert::isNumber( void )
 {
+	long double d = this->_ld;
+	std::string str = this->_str;
+
 	//printing char literal
 	std::cout << "  char   : ";
-	if (d < 32 || d > 126)
+	if (d != static_cast<int>(d) || d < 32 || d > 126)
 		std::cout << RED << "Non displayable" << RESET << std::endl;
 	else
 		std::cout << "'" << CYAN << static_cast<char>(d) << RESET << "'" << std::endl;
 	
 	//printing int literal
 	std::cout << "  int    : ";
-	if (d > static_cast<long double>(INT_MAX) || d < static_cast<long double>(INT_MIN) || d != static_cast<int>(d))
+	if (d > static_cast<long double>(INT_MAX) || d < static_cast<long double>(INT_MIN) ||
+		d != static_cast<int>(d))
 		std::cout << RED << "impossible" << RESET << std::endl;
 	else
 		std::cout << CYAN << static_cast<int>(d) << RESET << std::endl;	
 
 	//printing float literal
 	std::cout << "  float  : ";
-	if (d >  static_cast<long double>(FLT_MAX) || d <  static_cast<long double>(FLT_MIN))
+	if (d >  static_cast<long double>(FLT_MAX) || d < static_cast<long double>(FLT_MIN))
 		std::cout << RED << "impossible" << RESET << std::endl;
 	else
-	{
-		std::cout << CYAN << static_cast<float>(d);
-		if (_str.find('.') == std::string::npos)
-			std::cout << ".0";
-		std::cout << "f" << RESET << std::endl;
-	}
+		std::cout << CYAN << d << "f" << RESET << std::endl;
 
 	//printing double literal
 	std::cout << "  double : ";
-	if (d >  static_cast<long double>(DBL_MAX) || d <  static_cast<long double>(DBL_MIN))
+	if (d >  static_cast<long double>(DBL_MAX) || d < static_cast<long double>(DBL_MIN))
 		std::cout << RED << "impossible" << RESET << std::endl;
 	else
-	{
-		std::cout << CYAN << d;
-		if (_str.find('.') == std::string::npos)
-			std::cout << ".0";
-		std::cout << RESET << std::endl;
-	}
+		std::cout << CYAN << d << RESET << std::endl;
 }
 
-void Convert::IsSpecial(std::string str)
+void Convert::isSpecial( void )
 {
+	std::string str = this->_str;
 	std::cout << "  char   : " << RED << "Non displayable" << RESET << std::endl;
 	std::cout << "  int    : " << RED << "Impossible" << RESET << std::endl;
 
@@ -172,7 +180,7 @@ void Convert::IsSpecial(std::string str)
 	std::cout << RESET << std::endl;
 }
 
-void Convert::IsImpossible()
+void Convert::isImpossible()
 {
 	std::cout << "  char   : " << RED << "Non displayable" << RESET << std::endl;
 	std::cout << "  int    : " << RED << "Impossible" << RESET << std::endl;
@@ -180,16 +188,29 @@ void Convert::IsImpossible()
 	std::cout << "  double : " << RED << "Impossible" << RESET << std::endl;
 }
 
-void Convert::display(std::string str)
+void Convert::display(void)
 {
-	if (getType() == "char")
-		IsChar(getChar());
-	else if (getType() == "double" ||
-			 getType() == "int" ||
-			 getType() == "float")
-		IsNumber(getNumber());
-	else if (getType() == "special")
-		IsSpecial(str);
-	else
-		IsImpossible();
+	std::string t[6] = {"char", "int", "float", "double", "special", "impossible"};
+
+	detectLiteral();
+	
+	int i = 0;
+	while (i < 5 && getType().compare(t[i]) != 0)
+		i++;
+	
+	switch (i)
+	{
+		case 0:  isChar();
+				 break;
+		case 1:  isNumber();
+				 break;
+		case 2:  isNumber();
+				 break;
+		case 3:  isNumber();
+				 break;
+		case 4:  isSpecial();
+				 break;
+		default: isImpossible();
+			  	 break;
+	}
 }

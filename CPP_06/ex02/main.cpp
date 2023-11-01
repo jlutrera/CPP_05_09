@@ -14,10 +14,7 @@ int main(void)
 			delete base;
 		}
 		else
-		{
-			std::cout << YELLOW << "Reference : " << RESET;
-			std::cout << RED << "The pointer is NULL" << RESET << std::endl;
-		}
+			std::cout << "Reference: N/A" << std::endl;
 	}
 	return (0);
 }

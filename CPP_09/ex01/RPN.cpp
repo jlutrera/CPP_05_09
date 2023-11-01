@@ -56,6 +56,7 @@ int RPN::getSize2() const
 {
 	return (this->_stack_str.size());
 }
+
 void RPN::operation(char c)
 {
 	if (_stack.size() < 2)
@@ -65,24 +66,57 @@ void RPN::operation(char c)
 	int a = pop();
 	switch (c)
 	{
-		case '+':
-			push(a + b);
-			break;
-		case '-':
-			push(a - b);
-			break;
-		case '*':
-			push(a * b);
-			break;
-		case '/':
-			push(a / b);
-			break;
-		default:
-			throw std::invalid_argument( "Error : Invalid expression");
-			break;
+		case '+': push(a + b);
+				  break;
+		case '-': push(a - b);
+				  break;
+		case '*': push(a * b);
+				  break;
+		case '/': push(a / b);
+				  break;
+		default:  throw std::invalid_argument( "Error : Invalid expression");
+				  break;
 	}
 
 	std::string str_b = pop_str();
 	std::string str_a = pop_str();
 	push_str("(" + str_a + " " + c + " " + str_b + ")");
+}
+
+void RPN::process(char c1, char c2)
+{
+	const std::string simbols = "0123456789+-*/ ";
+
+	//Si el carácter no es un dígito ni un operador ni un espacio, lanzamos una excepción
+	if (simbols.find(c1) == std::string::npos || (c1 != ' ' && c2 != '\0' && c2 != ' '))
+		throw std::invalid_argument( "Error : Invalid expression");
+	if (c1 != ' ')
+	{
+		//Si el carácter es un dígito, lo añadimos a la pila de enteros y a la pila de strings
+		if (simbols.find(c1) < 10)
+		{
+			push(c1 -'0');
+			push_str(std::string(1, c1));
+		}
+		//Si no , el carácter es un operador, y realizamos la operación correspondiente
+		else
+			operation(c1);
+	}
+}
+
+void RPN::print(int pren)
+{
+	//Si la pila de enteros no tiene un único elemento, lanzamos una excepción
+	if (getSize() != 1)
+		throw std::invalid_argument( "Error : Invalid expression");
+	std::string prefix = pop_str();
+	//Si la expresión es en formato prefix, eliminamos los paréntesis del principio y del final
+	if (prefix[0] == '(')
+		prefix = prefix.substr(1, prefix.size() - 2);
+	//Si el flag --prefix se activó, mostramos la expresión prefix y el resultado
+	if (pren == 2)
+		std::cout << prefix << " = " << pop() << std::endl;
+	//y si no, mostramos sólo el resultado
+	else
+		std::cout << "Result = " << pop() << std::endl;
 }
