@@ -27,6 +27,7 @@ public:
 	char getChar() const;
 	long double getNumber() const;
 	void IsChar(char c);
+	void display(std::string str);
 
 private:
 	std::string _type;

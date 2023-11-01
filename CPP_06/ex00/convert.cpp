@@ -179,3 +179,17 @@ void Convert::IsImpossible()
 	std::cout << "  float  : " << RED << "Impossible" << RESET << std::endl;
 	std::cout << "  double : " << RED << "Impossible" << RESET << std::endl;
 }
+
+void Convert::display(std::string str)
+{
+	if (getType() == "char")
+		IsChar(getChar());
+	else if (getType() == "double" ||
+			 getType() == "int" ||
+			 getType() == "float")
+		IsNumber(getNumber());
+	else if (getType() == "special")
+		IsSpecial(str);
+	else
+		IsImpossible();
+}
