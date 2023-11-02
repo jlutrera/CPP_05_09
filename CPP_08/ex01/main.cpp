@@ -30,7 +30,7 @@ int main()
 
 	std::cout << "\n******* Test 4. Exceptions Test *******" << std::endl;
 	
-	Span sp3 = Span(10000);
+	Span sp3 = sp2;
 	try
 	{
 		std::cout << "4.1. AddNumber(1) to a full Span" << std::endl;

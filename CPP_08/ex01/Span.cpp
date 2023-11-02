@@ -26,14 +26,14 @@ Span &Span::operator=(const Span &copy)
 	return (*this);
 }
 
-void Span::addNumber(int n)
+void Span::addNumber(unsigned int n)
 {
 	if (_v.size() == _n)
 		throw FullSpanException();
 	_v.push_back(n);
 }
 
-void Span::addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+void Span::addNumber(const std::vector<int>::iterator begin, const std::vector<int>::iterator end)
 {
 	if (_v.size() + std::distance(begin, end) > _n)
 		throw FullSpanException();
