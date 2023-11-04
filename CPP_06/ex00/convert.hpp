@@ -40,10 +40,10 @@ private:
 	long double _ld;
 	
 	Convert();
-	void 		isChar();
-	void		isNumber();
-	void 		isSpecial();
-	void 		isImpossible();
+	void 		isChar() const;
+	void		isNumber() const;
+	void 		isSpecial() const;
+	void 		isImpossible() const;
 	void 		detectLiteral();
 };
 

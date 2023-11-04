@@ -1,7 +1,7 @@
 NAME	= 	identify
 #Flags
 CC		= 	c++
-CFLAGS	= 	-Wall -Wextra -Werror -Wpedantic -std=c++98 -fsanitize=address
+CFLAGS	= 	-Wall -Wextra -Werror -std=c++98
 RM		= 	rm -rf
 
 #Files
@@ -23,7 +23,7 @@ all		: 	$(NAME)
 			printf "$(CURSIVE)$(GRAY) 	- Compiling $@... $(RESET)\n"
 			$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME)	: 	$(OBJ) $(HEADER)
+$(NAME)	: 	$(OBJ)
 			printf "$(CURSIVE)$(GRAY) 	- Linking $(NAME)... $(RESET)\n"
 			$(CC) $(CFLAGS) $^ -o $(NAME)
 			printf "$(GREEN)    - Executable ready.\n$(RESET)"
