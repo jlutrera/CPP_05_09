@@ -1,7 +1,7 @@
 NAME	= 	whatever
 #Flags
 CC		= 	c++
-CFLAGS	= 	-Wall -Wextra -Werror -Wpedantic -std=c++98 -fsanitize=address
+CFLAGS	= 	-Wall -Wextra -Werror -std=c++98
 RM		= 	rm -rf
 
 #Files

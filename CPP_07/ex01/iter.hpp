@@ -4,28 +4,10 @@
 #include <iostream>
 
 template <typename T>
-void iter(T *array, int length, void (*f)(T &))
+void iter(T const *array, int const length, void (*f)(T const &))
 {
 	for (int i = 0; i < length; i++)
-		f(array[i]);
-}
-
-template <typename T>
-void print(T &x)
-{
-	std::cout << x << std::endl;
-}
-
-template <typename T>
-void next(T &x)
-{
-	std::cout << x + 1 << std::endl;
-}
-
-template <typename T>
-void upper(T &x)
-{
-	std::cout << static_cast<char>(x - 32) << std::endl;
+		f(array[i]);	
 }
 
 #endif

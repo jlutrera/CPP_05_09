@@ -11,36 +11,14 @@ class Awesome
 			_n = rhs._n;
 			return *this;
 		}
-		bool operator == (Awesome & rhs)
-		{
-			return _n == rhs._n;
-		}
-		bool operator != (Awesome & rhs)
-		{
-			return _n != rhs._n;
-		}
-		bool operator > (Awesome & rhs)
-		{
-			return _n > rhs._n;
-		}
-		bool operator < (Awesome & rhs)
-		{
-			return _n < rhs._n;
-		}
-		bool operator >= (Awesome & rhs)
-		{
-			return _n >= rhs._n;
-		}
-		bool operator <= (Awesome & rhs)
-		{
-			return _n <= rhs._n;
-		}
-		int get_n() const
-		{
-			return _n;
-		}
+		bool operator == (Awesome & rhs) { return _n == rhs._n; }
+		bool operator != (Awesome & rhs) { return _n != rhs._n; }
+		bool operator > (Awesome & rhs)  { return _n > rhs._n; 	}
+		bool operator < (Awesome & rhs)  { return _n < rhs._n;  }
+		bool operator >= (Awesome & rhs) { return _n >= rhs._n;	}
+		bool operator <= (Awesome & rhs) { return _n <= rhs._n; }
+		int get_n() const {	return _n; }
 	private:
-
 		int _n;
 };
 
@@ -64,8 +42,8 @@ int main(void)
 	std::cout << "  min(a, b) = " << min(a, b) << std::endl;
 	std::cout << "  max(a, b) = " << max(a, b) << std::endl;
 
-	std::string c = "chaine1";
-	std::string d = "chaine2";
+	std::string c = "first ";
+	std::string d = "second";
 
 	std::cout << CYAN << "\n****** <string> type ******" << RESET << std::endl;
 	std::cout << "TEST swap function" << std::endl;
@@ -79,10 +57,10 @@ int main(void)
 	Awesome x(2), y(4);
 
 	std::cout << CYAN << "\n****** <Awesome> class ******" << RESET << std::endl;
-	std::cout << "TEST swap function: ";
+	std::cout << "TEST swap function: " << std::endl;
 	std::cout << "  Before: x = " << x << ", y = " << y << std::endl;
 	swap(x, y);
-	std::cout << "  After : x = " << x << ", b = " << y << std::endl;
+	std::cout << "  After : x = " << x << ", y = " << y << std::endl;
 	std::cout << "TEST min and max functions:" << std::endl;
 	std::cout << "  min(x, y) = " << min(x, y) << std::endl;
 	std::cout << "  max(x, y) = " << max(x, y) << std::endl;
