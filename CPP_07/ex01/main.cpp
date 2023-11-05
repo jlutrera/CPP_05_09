@@ -8,6 +8,11 @@ class Awesome
 	private:
 		int _n;
 };
+std::ostream & operator << (std::ostream & o, const Awesome & rhs)
+{
+	o << rhs.get();
+	return o;
+}
 
 //Some template functions to test the iter function
 template <typename T>
@@ -27,11 +32,6 @@ template <typename T>
 void upper(T &x)
 {
 	std::cout << static_cast<char>(x - 32) << std::endl;
-}
-std::ostream & operator << (std::ostream & o, const Awesome & rhs)
-{
-	o << rhs.get();
-	return o;
 }
 
 int main()

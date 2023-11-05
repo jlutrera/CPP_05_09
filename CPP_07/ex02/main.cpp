@@ -10,6 +10,7 @@ int main(int, char**)
 	std::cout << std::endl;
 	std::cout << "------------Probamos constructores y copias------------" << std::endl;
     Array<int> numbers(5);
+	Array<int> numbersX(-1);
 	for (unsigned int i = 0; i < numbers.size(); i++)
 	{
 		numbers[i] = rand() % 100;

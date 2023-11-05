@@ -12,9 +12,12 @@ class Array
 		{
 			std::cout << "An empty array has been created" << std::endl;
 		}
-		Array<T>(unsigned int const n) : _array(new T[n]), _size(n)
+		Array<T>(int const n) : _array(n < 1 ? NULL : new T[n]), _size(n < 1 ? 0 : n)
 		{
-			std::cout << "An array of size " << n << " has been created" << std::endl;
+			if (n < 1)
+				std::cout << "An empty array has been created" << std::endl;
+			else
+				std::cout << "An array of size " << n << " has been created" << std::endl;
 		}
 		Array<T>(Array<T> const &src) : _array(NULL), _size(0)
 		{
@@ -24,14 +27,16 @@ class Array
 		~Array<T>(void)
 		{
 			std::cout << "An array has been destroyed" << std::endl;
-			delete [] _array;
+			if (_array)
+				delete [] _array;
 		}
 		Array<T> &operator=(Array<T> const &rhs)
 		{
 			std::cout << "An array has been assigned" << std::endl;
 			if (this != &rhs)
 			{
-				delete [] _array;
+				if (_array)
+					delete [] _array;
 				_size = rhs._size;
 				_array = new T[_size];
 				for (unsigned int i = 0; i < _size; i++)
