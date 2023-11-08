@@ -1,10 +1,10 @@
 #include "Span.hpp"
 
-Span::Span() : _n(0)
+Span::Span() : _N(0)
 {
 }
 
-Span::Span(unsigned int n) : _n(n)
+Span::Span(unsigned int N) : _N(N)
 {
 }
 
@@ -21,47 +21,53 @@ Span &Span::operator=(const Span &copy)
 {
 	if (this == &copy)
 		return (*this);
-	_n = copy._n;
-	_v = copy._v;
+	_N = copy._N;
+	_V = copy._V;
 	return (*this);
 }
 
-void Span::addNumber(unsigned int n)
+void Span::addNumber(int n)
 {
-	if (_v.size() == _n)
+	if (_V.size() == _N)
 		throw FullSpanException();
-	_v.push_back(n);
+
+	_V.push_back(n);
 }
 
 void Span::addNumber(const std::vector<int>::iterator begin, const std::vector<int>::iterator end)
 {
-	if (_v.size() + std::distance(begin, end) > _n)
+	if (_V.size() + std::distance(begin, end) > _N)
 		throw FullSpanException();
-	_v.insert(_v.end(), begin, end);
+
+	_V.insert(_V.end(), begin, end);
 }
 
 int Span::shortestSpan()
 {
-	if (_v.size() <= 1)
+	if (_V.size() <= 1)
 		throw NoSpanException();
-	std::vector<int> tmp(_v);
+	
+	std::vector<int> tmp(_V);
 	std::sort(tmp.begin(), tmp.end());
 	int min = tmp[1] - tmp[0];
 	for (std::vector<int>::iterator it = tmp.begin(); it != tmp.end() - 1; it++)
 	{
-		if (*(it + 1) - *it < min)
-			min = *(it + 1) - *it;
+		int aux = *(it + 1) - *it;
+		if (aux < min)
+			min = aux;
 	}
 	return (min);
 }
 
 int Span::longestSpan()
 {
-	if (_v.size() <= 1)
+	if (_V.size() <= 1)
 		throw NoSpanException();
-	std::vector<int> tmp(_v);
-	std::sort(tmp.begin(), tmp.end());
-	return (tmp[tmp.size() - 1] - tmp[0]);
+
+	std::vector<int> tmp(_V);
+	int max = *std::max_element(tmp.begin(), tmp.end());
+	int min = *std::min_element(tmp.begin(), tmp.end());
+	return (max - min);
 }
 
 const char *Span::FullSpanException::what() const throw()

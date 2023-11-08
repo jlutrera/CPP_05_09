@@ -6,8 +6,6 @@
 # define CYAN			"\033[36m"
 
 # include <stack>
-# include <deque>
-# include <list>
 # include <iostream>
 
 template <typename T>
@@ -19,21 +17,30 @@ class MutantStack : public std::stack<T>
 		virtual ~MutantStack() {}
 		MutantStack &operator=(const MutantStack &copy)
 		{
-			if (this == &copy)
-				return (*this);
-			std::stack<T>::operator=(copy);
+			if (this != &copy)
+				std::stack<T>::operator=(copy);
 			return (*this);
 		}
 
 		typedef typename std::stack<T>::container_type::iterator iterator;
-		iterator	begin() const
+		iterator	begin()
 		{
 			return (std::stack<T>::c.begin());
 		}
-		iterator	end() const
+		iterator	end()
 		{
 			return (std::stack<T>::c.end());
 		}
+
+		typedef typename std::stack<T>::container_type::const_iterator const_iterator;
+		const_iterator cbegin() const
+		{
+        	return this->c.cbegin();
+    	}
+	    const_iterator cend() const
+		{
+        	return this->c.cend();
+    	}
 };
 
 #endif

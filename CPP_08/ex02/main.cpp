@@ -1,4 +1,5 @@
 #include "MutantStack.hpp"
+#include <list>
 
 void msprint(MutantStack<int> &mstack)
 {
@@ -8,6 +9,17 @@ void msprint(MutantStack<int> &mstack)
 	for (ite = mstack.end(); ite != mstack.begin(); ite--)
 	{
 		std::cout << "       " << *(ite - 1) << std::endl;
+	}
+}
+
+void msprint2(MutantStack<int> &mstack)
+{
+	MutantStack<int>::const_iterator cite;
+
+	std::cout << CYAN << "mstack: " << RESET << std::endl;
+	for (cite = mstack.cbegin(); cite != mstack.cend(); cite++)
+	{
+		std::cout << "       " << *cite << std::endl;
 	}
 }
 
@@ -22,10 +34,10 @@ int main()
 	mstack.push(3);
 	mstack.push(737);
 	mstack.push(0);	
-	msprint(mstack);
+	msprint2(mstack);
 	std::cout << "**********   pop test  **********" << std::endl;
 	mstack.pop();
-	msprint(mstack);
+	msprint2(mstack);
 	std::cout << "******* size and top test *******" << std::endl;
 	std::cout << YELLOW << "size: " << mstack.size() << RESET << std::endl;
 	std::cout << YELLOW << "top: " << mstack.top() << RESET << std::endl;
