@@ -12,12 +12,9 @@ class Array
 		{
 			std::cout << "An empty array has been created" << std::endl;
 		}
-		Array<T>(unsigned int const n) : _array(n > 2147483647 ?  NULL : new T[n]), _size(n > 2147483647 ? 0 : n)
+		Array<T>(unsigned int const n) : _array(new T[n]), _size(n)
 		{
-			if (n > 2147483647)
-				std::cout << "An empty array has been created" << std::endl;
-			else
-				std::cout << "An array of size " << n << " has been created" << std::endl;
+			std::cout << "An array of size " << n << " has been created" << std::endl;
 		}
 		Array<T>(Array<T> const &src) : _array(NULL), _size(0)
 		{
