@@ -83,24 +83,29 @@ void RPN::operation(char c)
 	push_str("(" + str_a + " " + c + " " + str_b + ")");
 }
 
-void RPN::process(char c1, char c2)
+void RPN::process(char *c)
 {
 	const std::string simbols = "0123456789+-*/ ";
 
-	//Si el carácter no es un dígito ni un operador ni un espacio, lanzamos una excepción
-	if (simbols.find(c1) == std::string::npos || (c1 != ' ' && c2 != '\0' && c2 != ' '))
-		throw std::invalid_argument( "Error : Invalid expression");
-	if (c1 != ' ')
+	int i = -1;
+	while (c[++i])
 	{
-		//Si el carácter es un dígito, lo añadimos a la pila de enteros y a la pila de strings
-		if (simbols.find(c1) < 10)
+		//Si el carácter no es un dígito ni un operador ni un espacio, lanzamos una excepción
+		if (simbols.find(c[i]) == std::string::npos || (c[i] != ' ' && c[i+1] != '\0' && c[i+1] != ' '))
+			throw std::invalid_argument( "Error : Invalid expression");
+		
+		if (c[i] != ' ')
 		{
-			push(c1 -'0');
-			push_str(std::string(1, c1));
+			//Si el carácter es un dígito, lo añadimos a la pila de enteros y a la pila de strings
+			if (simbols.find(c[i]) < 10)
+			{
+				push(c[i] -'0');
+				push_str(std::string(1, c[i]));
+			}
+			//Si no , el carácter es un operador, y realizamos la operación correspondiente
+			else
+				operation(c[i]);
 		}
-		//Si no , el carácter es un operador, y realizamos la operación correspondiente
-		else
-			operation(c1);
 	}
 }
 
