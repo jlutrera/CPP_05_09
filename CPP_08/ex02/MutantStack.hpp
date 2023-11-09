@@ -7,6 +7,7 @@
 
 # include <stack>
 # include <iostream>
+# include <vector>
 
 template <typename T>
 class MutantStack : public std::stack<T>
@@ -31,16 +32,6 @@ class MutantStack : public std::stack<T>
 		{
 			return (std::stack<T>::c.end());
 		}
-
-		typedef typename std::stack<T>::container_type::const_iterator const_iterator;
-		const_iterator cbegin() const
-		{
-        	return this->c.cbegin();
-    	}
-	    const_iterator cend() const
-		{
-        	return this->c.cend();
-    	}
 };
 
 #endif
