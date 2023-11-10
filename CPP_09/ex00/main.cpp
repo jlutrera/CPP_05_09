@@ -5,9 +5,9 @@ static void print_header( void )
 	std::cout << "\n>>>>>>>>>>>>>>>>>>>> BITCOIN  EXCHANGE <<<<<<<<<<<<<<<<<<<<<<" << std::endl;
 	std::cout << YELLOW << " Date given "  << RESET << " => ";
 	std::cout << CYAN   << "  Value"   << RESET << " * ";
-	std::cout << CYAN   << "Change"  << RESET << " = ";
+	std::cout << "Change " << " = ";
 	std::cout << GREEN  << "Result"  << RESET;
-	std::cout << "       [Date found]" << std::endl;
+	std::cout << "      [Date found]" << std::endl;
 	std::cout << ">>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n" << std::endl;
 }
 

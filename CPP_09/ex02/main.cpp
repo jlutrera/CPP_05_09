@@ -11,12 +11,9 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
-
-	int n;
-	
 	for (int i = 1; i < argc; i++)
 	{
-		std::istringstream (argv[i]) >> n;
+		int n = atoi(argv[i]);
 		if (n < 0) 
 		{
 			std::cout << "Usage: ./PmergeMe [list of positive integers]" << std::endl;

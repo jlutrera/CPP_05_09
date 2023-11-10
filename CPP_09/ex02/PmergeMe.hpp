@@ -2,6 +2,7 @@
 # define PMERGEME_HPP
 
 #include <iostream>
+#include <cstdlib>
 #include <sstream>
 #include <sys/time.h>
 #include <list>

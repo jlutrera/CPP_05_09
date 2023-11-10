@@ -29,8 +29,7 @@ void BitcoinExchange::checkFile(std::ifstream &fd, const char *name)
 	fd.open(name);
 	if (!fd.is_open())
 	{
-		std::cerr << RED << " Error : Can't open the file ";
-		std::cerr << static_cast<std::string>(name) << RESET << '\n';
+		std::cerr << RED << " Error : Can't open the file " << name << RESET << std::endl;
 		exit(1);
 	}
 }
@@ -69,7 +68,7 @@ void BitcoinExchange::calculate(void)
 	}
 	std::cout << " " << YELLOW << _date << RESET << " => ";
 	std::cout << CYAN  << std::right << std::setw(7) << _value << RESET << " * ";
-	std::cout << CYAN  << std::left << std::setw(7) << it->second << RESET << " = ";
+	std::cout << std::left << std::setw(7) << it->second << " = ";
 	std::cout << GREEN << std::left << std::setw(11) << (_value * it->second) << RESET;
 	std::cout << " [" << it->first << "] " << std::endl;
 }

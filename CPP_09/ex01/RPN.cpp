@@ -85,19 +85,13 @@ void RPN::operation(char c)
 
 void RPN::process(char *c)
 {
-	const std::string simbols = "0123456789+-*/ ";
-
 	int i = -1;
 	while (c[++i])
 	{
-		//Si el carácter no es un dígito ni un operador ni un espacio, lanzamos una excepción
-		if (simbols.find(c[i]) == std::string::npos || (c[i] != ' ' && c[i+1] != '\0' && c[i+1] != ' '))
-			throw std::invalid_argument( "Error : Invalid expression");
-		
 		if (c[i] != ' ')
 		{
 			//Si el carácter es un dígito, lo añadimos a la pila de enteros y a la pila de strings
-			if (simbols.find(c[i]) < 10)
+			if (isdigit(c[i]))
 			{
 				push(c[i] -'0');
 				push_str(std::string(1, c[i]));

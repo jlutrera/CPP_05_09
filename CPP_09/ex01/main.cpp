@@ -15,7 +15,6 @@ int main(int argc, char **argv)
 	try
 	{
 		RPN rpn;
-		//Recorremos el argumento carácter a carácter
 		rpn.process(argv[pren]);
 		rpn.print(pren);
 		return (0);

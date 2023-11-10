@@ -136,7 +136,6 @@ AVector &AVector::operator=(AVector const &rhs)
 	return (*this);
 }
 
-
 // Merge two subarrays of vector arr[]
 // First subarray is arr[l..m], second subarray is arr[m+1..r]
 void	AVector::mergeVector(std::vector<int>& arr, int l, int m, int r)
