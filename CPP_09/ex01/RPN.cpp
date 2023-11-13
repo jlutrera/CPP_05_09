@@ -88,18 +88,15 @@ void RPN::process(char *c)
 	int i = -1;
 	while (c[++i])
 	{
-		if (c[i] != ' ')
+		//Si el carácter es un dígito, lo añadimos a la pila de enteros y a la pila de strings
+		if (isdigit(c[i]))
 		{
-			//Si el carácter es un dígito, lo añadimos a la pila de enteros y a la pila de strings
-			if (isdigit(c[i]))
-			{
-				push(c[i] -'0');
-				push_str(std::string(1, c[i]));
-			}
-			//Si no , el carácter es un operador, y realizamos la operación correspondiente
-			else
-				operation(c[i]);
+			push(c[i] -'0');
+			push_str(std::string(1, c[i]));
 		}
+		//Si no , el carácter es un operador, y realizamos la operación correspondiente
+		else if (c[i] != ' ')
+			operation(c[i]);
 	}
 }
 
